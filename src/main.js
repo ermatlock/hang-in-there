@@ -10,6 +10,10 @@ var showFormButton = document.querySelector('.show-form');
 var showSavedButton = document.querySelector('.show-saved');
 var takeMeBackButton = document.querySelector('.show-main');
 var backToMainButton = document.querySelector('.back-to-main');
+var inputImage = document.querySelector('#poster-image-url');
+var inputTitle = document.querySelector('#poster-title');
+var inputQuote = document.querySelector('#poster-quote');
+var showMyPosterButton = document.querySelector('.make-poster');
 
 // we've provided you with some data to work with 👇
 var images = [
@@ -119,6 +123,7 @@ showFormButton.addEventListener('click', showPosterForm);
 showSavedButton.addEventListener('click', showSavedForm);
 takeMeBackButton.addEventListener('click', showMainPage);
 backToMainButton.addEventListener('click', showMainPage);
+showMyPosterButton.addEventListener('click', showMyPoster);
 
 // functions and event handlers go here 👇
 // (we've provided one for you to get you started)!
@@ -142,12 +147,28 @@ function showPosterForm() {
 function showSavedForm() {
   show(savedPostersPage);
   hide(mainPoster);
-}
+};
 
 function showMainPage() {
   show(mainPoster);
   hide(posterForm);
   hide(savedPostersPage);
+};
+
+function showMyPoster() {
+  event.preventDefault()
+  var newQuote = inputQuote.value;
+  var newTitle = inputTitle.value;
+  var newImage = inputImage.value;
+  pushToArray(quotes, newQuote)
+  pushToArray(titles, newTitle)
+  pushToArray(images, newImage)
+  showMainPage()
+  makePoster(newImage, newTitle, newQuote);
+};
+
+function pushToArray(array, asset) {
+  array.push(asset);
 }
 
 function randomizePoster() {
