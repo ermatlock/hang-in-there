@@ -160,9 +160,16 @@ function showMyPoster() {
   var newQuote = inputQuote.value;
   var newTitle = inputTitle.value;
   var newImage = inputImage.value;
+  pushToArray(quotes, newQuote)
+  pushToArray(titles, newTitle)
+  pushToArray(images, newImage)
   showMainPage()
   makePoster(newImage, newTitle, newQuote);
 };
+
+function pushToArray(array, asset) {
+  array.push(asset);
+}
 
 function randomizePoster() {
   var newQuote = quotes[getRandomIndex(quotes)];
