@@ -9,7 +9,7 @@ var showRandomButton = document.querySelector('.show-random');
 var showFormButton = document.querySelector('.show-form');
 var showSavedButton = document.querySelector('.show-saved');
 var takeMeBackButton = document.querySelector('.show-main');
-
+var backToMainButton = document.querySelector('.back-to-main');
 
 // we've provided you with some data to work with 👇
 var images = [
@@ -117,7 +117,8 @@ window.addEventListener('load', randomizePoster);
 showRandomButton.addEventListener('click', randomizePoster);
 showFormButton.addEventListener('click', showPosterForm);
 showSavedButton.addEventListener('click', showSavedForm);
-takeMeBackButton.addEventListener('click', showMainPage)
+takeMeBackButton.addEventListener('click', showMainPage);
+backToMainButton.addEventListener('click', showMainPage);
 
 // functions and event handlers go here 👇
 // (we've provided one for you to get you started)!
@@ -146,6 +147,7 @@ function showSavedForm() {
 function showMainPage() {
   show(mainPoster);
   hide(posterForm);
+  hide(savedPostersPage);
 }
 
 function randomizePoster() {
