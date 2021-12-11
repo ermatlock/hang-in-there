@@ -196,8 +196,9 @@ function saveThisPoster() {
 };
 
 function createSavedPostersSection() {
+  savedPostersGrid.innerHTML = ``
   for (var i = 0; i < savedPosters.length; i++) {
-  savedPostersGrid.innerHTML =
+  savedPostersGrid.innerHTML +=
   `<article class="mini-poster" id=${savedPosters[i].id}>
   <img src=${savedPosters[i].imageURL} alt="nothin' to see here">
   <h2>${savedPosters[i].title}</h2>
