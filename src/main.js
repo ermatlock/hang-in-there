@@ -10,10 +10,11 @@ var showFormButton = document.querySelector('.show-form');
 var showSavedButton = document.querySelector('.show-saved');
 var takeMeBackButton = document.querySelector('.show-main');
 var backToMainButton = document.querySelector('.back-to-main');
+var showMyPosterButton = document.querySelector('.make-poster');
+var saveThisPosterButton = document.querySelector('.save-poster');
 var inputImage = document.querySelector('#poster-image-url');
 var inputTitle = document.querySelector('#poster-title');
 var inputQuote = document.querySelector('#poster-quote');
-var showMyPosterButton = document.querySelector('.make-poster');
 
 // we've provided you with some data to work with 👇
 var images = [
@@ -124,6 +125,7 @@ showSavedButton.addEventListener('click', showSavedForm);
 takeMeBackButton.addEventListener('click', showMainPage);
 backToMainButton.addEventListener('click', showMainPage);
 showMyPosterButton.addEventListener('click', showMyPoster);
+saveThisPosterButton.addEventListener('click', saveThisPoster);
 
 // functions and event handlers go here 👇
 // (we've provided one for you to get you started)!
@@ -169,7 +171,7 @@ function showMyPoster() {
 
 function pushToArray(array, asset) {
   array.push(asset);
-}
+};
 
 function randomizePoster() {
   var newQuote = quotes[getRandomIndex(quotes)];
@@ -183,4 +185,8 @@ function makePoster(newImage, newTitle, newQuote) {
   posterImage.src = currentPoster.imageURL;
   posterTitle.innerText = currentPoster.title;
   posterQuote.innerText = currentPoster.quote;
+};
+
+function saveThisPoster() {
+  savedPosters.push(currentPoster);
 };
