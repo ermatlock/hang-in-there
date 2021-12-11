@@ -5,6 +5,7 @@ var posterQuote = document.querySelector('.poster-quote');
 var posterForm = document.querySelector('.poster-form');
 var mainPoster = document.querySelector('.main-poster');
 var savedPostersPage = document.querySelector('.saved-posters');
+var savedPostersGrid = document.querySelector('.saved-posters-grid')
 var showRandomButton = document.querySelector('.show-random');
 var showFormButton = document.querySelector('.show-form');
 var showSavedButton = document.querySelector('.show-saved');
@@ -149,6 +150,7 @@ function showPosterForm() {
 function showSavedForm() {
   show(savedPostersPage);
   hide(mainPoster);
+  createSavedPostersSection();
 };
 
 function showMainPage() {
@@ -159,13 +161,13 @@ function showMainPage() {
 
 function showMyPoster() {
   event.preventDefault()
-  var newQuote = inputQuote.value;
-  var newTitle = inputTitle.value;
   var newImage = inputImage.value;
-  pushToArray(quotes, newQuote)
-  pushToArray(titles, newTitle)
-  pushToArray(images, newImage)
-  showMainPage()
+  var newTitle = inputTitle.value;
+  var newQuote = inputQuote.value;
+  pushToArray(images, newImage);
+  pushToArray(titles, newTitle);
+  pushToArray(quotes, newQuote);
+  showMainPage();
   makePoster(newImage, newTitle, newQuote);
 };
 
@@ -174,9 +176,9 @@ function pushToArray(array, asset) {
 };
 
 function randomizePoster() {
-  var newQuote = quotes[getRandomIndex(quotes)];
-  var newTitle = titles[getRandomIndex(titles)];
   var newImage = images[getRandomIndex(images)];
+  var newTitle = titles[getRandomIndex(titles)];
+  var newQuote = quotes[getRandomIndex(quotes)];
   makePoster(newImage, newTitle, newQuote);
 };
 
@@ -190,5 +192,16 @@ function makePoster(newImage, newTitle, newQuote) {
 function saveThisPoster() {
   if (!savedPosters.includes(currentPoster)) {
     savedPosters.push(currentPoster);
+  }
+};
+
+function createSavedPostersSection() {
+  for (var i = 0; i < savedPosters.length; i++) {
+  savedPostersGrid.innerHTML =
+  `<article class="mini-poster" id=${savedPosters[i].id}>
+  <img src=${savedPosters[i].imageURL} alt="nothin' to see here">
+  <h2>${savedPosters[i].title}</h2>
+  <h3>${savedPosters[i].quote}</h3>
+  </article>`
   }
 };
