@@ -211,7 +211,6 @@ function createSavedPostersSection() {
 function deleteThisPoster(event) {
   var id = event.target.id;
   for (var i = 0; i < savedPosters.length; i++) {
-    console.log(typeof id, typeof savedPosters[i].id);
     if (id === savedPosters[i].id.toString()) {
       savedPosters.splice(i, 1);
     }
