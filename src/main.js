@@ -5,7 +5,7 @@ var posterQuote = document.querySelector('.poster-quote');
 var posterForm = document.querySelector('.poster-form');
 var mainPoster = document.querySelector('.main-poster');
 var savedPostersPage = document.querySelector('.saved-posters');
-var savedPostersGrid = document.querySelector('.saved-posters-grid')
+var savedPostersGrid = document.querySelector('.saved-posters-grid');
 var showRandomButton = document.querySelector('.show-random');
 var showFormButton = document.querySelector('.show-form');
 var showSavedButton = document.querySelector('.show-saved');
@@ -16,6 +16,7 @@ var saveThisPosterButton = document.querySelector('.save-poster');
 var inputImage = document.querySelector('#poster-image-url');
 var inputTitle = document.querySelector('#poster-title');
 var inputQuote = document.querySelector('#poster-quote');
+
 
 // we've provided you with some data to work with 👇
 var images = [
@@ -127,9 +128,9 @@ takeMeBackButton.addEventListener('click', showMainPage);
 backToMainButton.addEventListener('click', showMainPage);
 showMyPosterButton.addEventListener('click', showMyPoster);
 saveThisPosterButton.addEventListener('click', saveThisPoster);
+savedPostersGrid.addEventListener('dblclick', deleteThisPoster);
 
 // functions and event handlers go here 👇
-// (we've provided one for you to get you started)!
 function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length);
 };
@@ -206,3 +207,23 @@ function createSavedPostersSection() {
   </article>`
   }
 };
+
+function deleteThisPoster(event) {
+  console.log(event.target.id);
+  var id = event.target.id;
+  for (var i = 0; i < savedPosters.length; i++) {
+    console.log(typeof id, typeof savedPosters[i].id);
+    if (id === savedPosters[i].id.toString()) {
+      savedPosters.splice(i, 1);
+    }
+  }
+  createSavedPostersSection();
+}
+
+
+// goal: delete the saved poster at the spot where we double click on the page
+// declare a querySelector that listens to the whole saved posters SECTION
+// create an event listener that listens for a doubleclick on the page
+// maybe use unique id to locate which one was doubleclicked
+// then we splice the array at the index that matches the id (for loop, conditional?)
+// after splicing we invoke createSavedPostersSection to rewrite the proper layout
