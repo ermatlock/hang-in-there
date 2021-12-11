@@ -188,5 +188,7 @@ function makePoster(newImage, newTitle, newQuote) {
 };
 
 function saveThisPoster() {
-  savedPosters.push(currentPoster);
+  if (!savedPosters.includes(currentPoster)) {
+    savedPosters.push(currentPoster);
+  }
 };
