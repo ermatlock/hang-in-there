@@ -209,21 +209,11 @@ function createSavedPostersSection() {
 };
 
 function deleteThisPoster(event) {
-  console.log(event.target.id);
   var id = event.target.id;
   for (var i = 0; i < savedPosters.length; i++) {
-    console.log(typeof id, typeof savedPosters[i].id);
     if (id === savedPosters[i].id.toString()) {
       savedPosters.splice(i, 1);
     }
   }
   createSavedPostersSection();
 }
-
-
-// goal: delete the saved poster at the spot where we double click on the page
-// declare a querySelector that listens to the whole saved posters SECTION
-// create an event listener that listens for a doubleclick on the page
-// maybe use unique id to locate which one was doubleclicked
-// then we splice the array at the index that matches the id (for loop, conditional?)
-// after splicing we invoke createSavedPostersSection to rewrite the proper layout
