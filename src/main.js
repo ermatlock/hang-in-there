@@ -2,8 +2,8 @@
 var posterImage = document.querySelector('.poster-img');
 var posterTitle = document.querySelector('.poster-title');
 var posterQuote = document.querySelector('.poster-quote');
-var posterForm = document.querySelector('.poster-form');
-var mainPoster = document.querySelector('.main-poster');
+var posterFormPage = document.querySelector('.poster-form');
+var mainPosterPage = document.querySelector('.main-poster');
 var savedPostersPage = document.querySelector('.saved-posters');
 var savedPostersGrid = document.querySelector('.saved-posters-grid');
 var showRandomButton = document.querySelector('.show-random');
@@ -122,8 +122,8 @@ var currentPoster;
 // event listeners go here 👇
 window.addEventListener('load', randomizePoster);
 showRandomButton.addEventListener('click', randomizePoster);
-showFormButton.addEventListener('click', showPosterForm);
-showSavedButton.addEventListener('click', showSavedForm);
+showFormButton.addEventListener('click', showFormPage);
+showSavedButton.addEventListener('click', showSavedPage);
 takeMeBackButton.addEventListener('click', showMainPage);
 backToMainButton.addEventListener('click', showMainPage);
 showMyPosterButton.addEventListener('click', showMyPoster);
@@ -135,6 +135,10 @@ function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length);
 };
 
+function pushToArray(array, asset) {
+  array.push(asset);
+};
+
 function show(element) {
   element.classList.remove('hidden');
 };
@@ -143,20 +147,20 @@ function hide(element) {
   element.classList.add('hidden');
 };
 
-function showPosterForm() {
-  show(posterForm);
-  hide(mainPoster);
+function showFormPage() {
+  show(posterFormPage);
+  hide(mainPosterPage);
 };
 
-function showSavedForm() {
+function showSavedPage() {
   show(savedPostersPage);
-  hide(mainPoster);
+  hide(mainPosterPage);
   createSavedPostersSection();
 };
 
 function showMainPage() {
-  show(mainPoster);
-  hide(posterForm);
+  show(mainPosterPage);
+  hide(posterFormPage);
   hide(savedPostersPage);
 };
 
@@ -170,10 +174,6 @@ function showMyPoster() {
   pushToArray(quotes, newQuote);
   showMainPage();
   makePoster(newImage, newTitle, newQuote);
-};
-
-function pushToArray(array, asset) {
-  array.push(asset);
 };
 
 function randomizePoster() {
@@ -199,12 +199,12 @@ function saveThisPoster() {
 function createSavedPostersSection() {
   savedPostersGrid.innerHTML = ``
   for (var i = 0; i < savedPosters.length; i++) {
-  savedPostersGrid.innerHTML +=
-  `<article class="mini-poster" id=${savedPosters[i].id}>
-  <img src=${savedPosters[i].imageURL} alt="nothin' to see here">
-  <h2>${savedPosters[i].title}</h2>
-  <h3>${savedPosters[i].quote}</h3>
-  </article>`
+    savedPostersGrid.innerHTML +=
+      `<article class="mini-poster" id=${savedPosters[i].id}>
+      <img src=${savedPosters[i].imageURL} alt="nothin' to see here">
+      <h2>${savedPosters[i].title}</h2>
+      <h3>${savedPosters[i].quote}</h3>
+      </article>`
   }
 };
 
@@ -216,4 +216,4 @@ function deleteThisPoster(event) {
     }
   }
   createSavedPostersSection();
-}
+};
