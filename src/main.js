@@ -135,10 +135,6 @@ function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length);
 };
 
-function pushToArray(array, asset) {
-  array.push(asset);
-};
-
 function show(element) {
   element.classList.remove('hidden');
 };
@@ -169,9 +165,9 @@ function showMyPoster() {
   var newImage = inputImage.value;
   var newTitle = inputTitle.value;
   var newQuote = inputQuote.value;
-  pushToArray(images, newImage);
-  pushToArray(titles, newTitle);
-  pushToArray(quotes, newQuote);
+  images.push(newImage);
+  titles.push(newTitle);
+  quotes.push(newQuote);
   showMainPage();
   makePoster(newImage, newTitle, newQuote);
 };
